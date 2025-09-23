@@ -1,0 +1,28 @@
+{
+  "name": "arc-themes-feature-pack",
+  "version": "2.0.0",
+  "description": "This is used by the Arc Themes team for development and testing of Arc Themes Blocks",
+  "homepage": "https://github.com/WPMedia/arc-themes-feature-pack#readme",
+  "main": "index.js",
+  "scripts": {
+    "arc-themes": "node arc-themes.js",
+    "fusion": "fusion",
+    "start": "fusion start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@arc-fusion/cli": "^2.2.4",
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.30"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WPMedia/arc-themes-feature-pack.git"
+  },
+  "dependencies": {
+    "@arc-publishing/sdk-identity": "^1.91.1",
+    "@arc-publishing/sdk-sales": "^1.91.1"
+  }
+}
