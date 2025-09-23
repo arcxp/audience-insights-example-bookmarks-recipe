@@ -57,11 +57,11 @@ apiOrigin: '{your api origin or CDN here}'
 ```
 :::note
 If you are using _Page Builder_, you can set up the API origin directly on the code (blocks.json file) or through the Page Builder app (Site Properties tab). 
-Check <Link blank href={`https://dev.arcxp.com/subscriptions/identity/configure/arc-xp-identity-themes-blocks-configuration-customization-deep-dive/`} text="How-to: ArcXP Identity Themes Blocks Configuration & Customization Deep Dive" /> for additional information.
+Check `https://dev.arcxp.com/subscriptions/identity/configure/arc-xp-identity-themes-blocks-configuration-customization-deep-dive/`for additional information.
 If you are using our blocks, we call `Identity.options()` for you.
 :::
 
-For more information about the available SDK methods, see <Link blank href={`https://dev.arcxp.com/subscriptions/developer-docs/arc-xp-subscriptions-sdks/`} text="Arc XP Subscriptions SDKs" />.
+For more information about the available SDK methods, see `https://dev.arcxp.com/subscriptions/developer-docs/arc-xp-subscriptions-sdks/`.
 
 
 ## Set up  
@@ -102,4 +102,4 @@ GITHUB_TOKEN=[your github token]
 
 For more information on how to manage bundles refer to this documentation https://docs.arcxp.com/en/products/pagebuilder/pagebuilder-editor/developer-tools-overview/deployer-overview/managing-your-bundles.html
 
-Check <Link blank href={`https://dev.arcxp.com/subscriptions/identity/configure/arc-xp-identity-themes-blocks-configuration-customization-deep-dive/`} text="How-to: ArcXP Identity Themes Blocks Configuration & Customization Deep Dive" /> for additional information on how to use the custom blocks.
+Check `https://dev.arcxp.com/subscriptions/identity/configure/arc-xp-identity-themes-blocks-configuration-customization-deep-dive/` for additional information on how to use the custom blocks.
