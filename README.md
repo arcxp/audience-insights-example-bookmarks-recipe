@@ -12,6 +12,8 @@ Audience Insights Bookmarking feature let readers save articles for later.
 You can use it to quickly set up options for your users to bookmark and save content. This is directly connected to content with the ANS ID.
 It can be implemented as standard PageBuilder Theme blocks and can be used together or independently to deliver a lightweight save-for-later experience.
 
+Bookmarks have a TTL of 60 days, meaning that any bookmarks older than 60 days will be automatically deleted from the system.
+
 What you’ll build:
 
 * **Bookmark button on article pages**
@@ -45,7 +47,7 @@ The Arc XP Audience Insights SDK is published to github packages.
 https://github.com/arcxp/arc-commerce-sdks/pkgs/npm/sdk-audience-insights
 
 
-After you <Link blank href={`https://docs.npmjs.com/downloading-and-installing-node-js-and-npm`} text="install npm" />, to install the Arc SDKs, execute the following command in your npm project:
+After you install npm, to install the Arc SDKs, execute the following command in your npm project:
 
 `npm install @arcxp/sdk-audience-insights`
 
@@ -63,11 +65,10 @@ import Identity from '@arc-publishing/sdk-identity';
 
 
 ```
-:::note
 If you are using _Page Builder_, you can set up the API origin directly on the code (blocks.json file) or through the Page Builder app (Site Properties tab). 
 Check `https://dev.arcxp.com/subscriptions/identity/configure/arc-xp-identity-themes-blocks-configuration-customization-deep-dive/`for additional information.
 If you are using our blocks, we call `Identity.options()` for you.
-:::
+```
 
 For more information about the available SDK methods, see `https://dev.arcxp.com/subscriptions/developer-docs/arc-xp-subscriptions-sdks/`.
 
