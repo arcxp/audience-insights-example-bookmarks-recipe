@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { useFusionContext } from "fusion:context";
 import { useIdentity } from "@wpmedia/arc-themes-components";
 import "./bookmark-list.css";
+import AudienceInsights from '@arcxp/sdk-audience-insights';
 
 const BLOCK_CLASS_NAME = "b-bookmark-list";
 
 function BookmarkList({ onChange}) {
-      const [jwtToken, setJwtToken] = useState(null);
         const { isAdmin } = useFusionContext();
         const { Identity } = useIdentity(); 
 		const [bookmarks, setBookmarks] = useState([]);
@@ -15,8 +15,11 @@ function BookmarkList({ onChange}) {
          const redirectURL = "/account/login/";
 
         useEffect(() => {
+             if (Identity) {
+             AudienceInsights._Identity = Identity;
+                 AudienceInsights.apiOrigin = Identity.apiOrigin; 
+  }
         const fetchBookmarks = async () => {
-            if (!Identity || isAdmin) return;
             setLoading(true);
             try {
             const isLoggedIn = await Identity.isLoggedIn();
@@ -24,23 +27,9 @@ function BookmarkList({ onChange}) {
                 window.location = redirectURL;
                 return;
             }
-            const token = JSON.parse(localStorage.getItem("ArcId.USER_INFO") || "{}").accessToken || null;
-            setJwtToken(token);
-            if (!token) {
-                setBookmarks([]);
-                setLoading(false);
-                return;
-            }
-            const res = await fetch(`${Identity.apiOrigin}/identity/public/v2/extprofile/readlater`, {
-                method: "GET",
-                headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-                },
-            });
-            if (!res.ok) throw new Error(`GET failed ${res.status}`);
-            const data = await res.json();
-            setBookmarks(data);
+            const res = await AudienceInsights.listBookmarks();
+            if (res.statusCode !== 200) throw new Error(`GET failed ${res.status}`);
+            setBookmarks(Array.isArray(res.items) ? res.items : []);
             } catch (err) {
             setBookmarks([]);
             console.error("Failed to fetch bookmarks:", err);
@@ -53,15 +42,7 @@ function BookmarkList({ onChange}) {
 
         const handleRemove = async (ansId) => {
         try {
-            await fetch(
-                `${Identity.apiOrigin}/identity/public/v2/extprofile/readlater/${encodeURIComponent(ansId)}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Authorization": `Bearer ${jwtToken}`,
-                    },
-                }
-            );
+            await AudienceInsights.deleteBookmark(ansId);
             setBookmarks((prev) => {
                 const next = prev.filter((b) => b.ansId !== ansId);
                 if (onChange) onChange(next);
@@ -114,16 +95,7 @@ function BookmarkList({ onChange}) {
 }
 
 BookmarkList.propTypes = {
-	initialBookmarks: PropTypes.arrayOf(
-		PropTypes.shape({
-			ansId: PropTypes.string.isRequired,
-			headline: PropTypes.string,
-			site: PropTypes.string,
-			url: PropTypes.string.isRequired,
-		}),
-	),
 	onChange: PropTypes.func,
-	className: PropTypes.string,
 };
 
 BookmarkList.label = "Bookmark List - Arc Block";

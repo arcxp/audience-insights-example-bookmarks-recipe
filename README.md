@@ -38,22 +38,30 @@ When the user logs in, two JWTs are returned if the request is successful:
 
 To interact with our system, you can either call the APIs directly or use our SDK packages. Our SDK methods act as wrappers that help developers interact with our APIs more easily. We strongly recommend using our SDKs, as these libraries handle various tasks for you. For more details.
 
-The Arc XP Bookmark SDK is published to NPM.
+You must first have read access to the @arcxp Github Package repository. If your Github account does not have read access to the Github Packages under the @arcxp Github org, reach out to your TAM. Add your Github developer token to your .npmrc file, then install the package to your React project.
 
-After you install npm, to install the Arc SDKs, execute the following command in your npm project:
+The Arc XP Audience Insights SDK is published to github packages.
 
-`npm i @arc-publishing/sdk-bookmarks`
+https://github.com/arcxp/arc-commerce-sdks/pkgs/npm/sdk-audience-insights
+
+
+After you <Link blank href={`https://docs.npmjs.com/downloading-and-installing-node-js-and-npm`} text="install npm" />, to install the Arc SDKs, execute the following command in your npm project:
+
+`npm install @arcxp/sdk-audience-insights`
 
 After you have them installed, include the SDKs in your code:
 
-`import Audience Insights from '@arc-publishing/sdk-bookmarks'`;
+```shell
+import AudienceInsights from '@arcxp/sdk-audience-insights';
+```
 
-To access the right API endpoints through the SDKs, specify an API Origin before calling any other SDK methods.
+To access the right API endpoints through the SDKs, specify an API Origin before calling any other SDK methods. You will need to pass `Identity` when initializing `Audience Insights`, as several methods require authentication, and the authentication is handled by `Identity`.
 
 ```shell 
-Identity.options({
-apiOrigin: '{your api origin or CDN here}'
-});
+import Identity from '@arc-publishing/sdk-identity';
+```
+
+
 ```
 :::note
 If you are using _Page Builder_, you can set up the API origin directly on the code (blocks.json file) or through the Page Builder app (Site Properties tab). 

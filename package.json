@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@arc-publishing/sdk-identity": "^1.91.1",
-    "@arc-publishing/sdk-sales": "^1.91.1"
+    "@arc-publishing/sdk-sales": "^1.91.1",
+     "@arcxp/sdk-audience-insights": "^1.98.2"
   }
 }
